@@ -273,3 +273,4 @@ list1.addToTail(6);
 
 console.log(list1.reverse());     // => head -> 6 -> 5 -> 4 -> 3 -> 2 -> 1
 ```
+# Linked-list-queue
