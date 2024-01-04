@@ -12,6 +12,15 @@ class SinglyLinkedList {
         this.head = head;
     }
 
+    addToHead(val){
+        let newNode = new SinglyLinkedNode(val)
+        if(this.head){
+            newNode.next = this.head
+        }
+
+        this.head = newNode
+    }
+
     addToTail(val) {
         let newNode = new SinglyLinkedNode(val);
 
@@ -33,29 +42,63 @@ class SinglyLinkedList {
         // Returns the length of the list
         // Implement in O(n) and in O(1) time complexity
 
-        // Your code here 
+         let counter = 0
+
+        let current = this.head
+        while(current){
+            counter++
+            if(!current.next){
+                return counter
+            }
+            current = current.next
+        }
+
+
+
+        // Your code here
     }
 
     sumOfNodes() {
         // Returns the sum of the values of all the nodes
+        let counter = 0
 
-        // Your code here 
+        let current = this.head
+
+        while(current){
+            counter += current.value
+            if(!current.next){
+                return counter
+            }
+            current = current.next
+        }
 
         // Write your hypothesis on the time complexity of this method here
+        //O(n)
     }
 
     averageValue() {
         // Returns the average value of all the nodes
 
-        // Your code here 
+        return this.sumOfNodes() / this.listLength()
 
         // Write your hypothesis on the time complexity of this method here
+        //O(n)
     }
 
     findNthNode(n) {
         // Returns the node at the nth index from the head
+        let index = 0
+        let current = this.head
 
-        // Your code here 
+        while(current){
+
+            if(index === n){
+                return current
+            }
+
+            index++
+            current = current.next
+        }
 
         // Write your hypothesis on the time complexity of this method here
     }
@@ -65,7 +108,9 @@ class SinglyLinkedList {
         // Implement this as a singly linked list then as a doubly linked list
             // How do the implementation for singly and doubly vary if at all?
 
-        // Your code here 
+        let n = Math.floor((this.listLength() - 1) / 2)
+
+        return this.findNthNode(n)
 
         // Write your hypothesis on the time complexity of this method here
     }
@@ -76,8 +121,19 @@ class SinglyLinkedList {
         // Try implementing it by returning a new linked list then returning
         // the original linked list reversed in place
             // Does the time complexity change? How about space complexity?
+        const reversed = new SinglyLinkedList()
 
-        // Your code here 
+        let current = this.head
+
+        while(current){
+            reversed.addToHead(current.value)
+            if(current.next){
+                current = current.next
+            }else{
+                return reversed
+            }
+        }
+
 
         // Write your hypothesis on the time complexity of this method here
     }
@@ -85,7 +141,7 @@ class SinglyLinkedList {
     reverseInPlace() {
         // Reverses the linked list in-place
 
-        // Your code here 
+        // Your code here
 
         // Write your hypothesis on the time complexity of this method here
     }
@@ -127,15 +183,15 @@ class DoublyLinkedList {
         // Implement this as a singly linked list then as a doubly linked list
             // How do the implementation for singly and doubly vary if at all?
 
-        // Your code here 
-        
+        // Your code here
+
         // Write your hypothesis on the time complexity of this method here
     }
 
     reverse() {
         // Returns a new reversed version of the linked list
 
-        // Your code here 
+        // Your code here
 
         // Write your hypothesis on the time complexity of this method here
     }
@@ -143,12 +199,22 @@ class DoublyLinkedList {
     reverseInPlace() {
         // Reverses the linked list in-place
 
-        // Your code here 
+        // Your code here
 
         // Write your hypothesis on the time complexity of this method here
     }
 
 }
+
+    let list = new SinglyLinkedList();
+
+    list.addToTail(13);
+    list.addToTail(21);
+    list.addToTail(32);
+    list.addToTail(14);
+    list.addToTail(53);
+    console.log(list.findNthNode(3))
+
 
 module.exports = {
     SinglyLinkedNode,
